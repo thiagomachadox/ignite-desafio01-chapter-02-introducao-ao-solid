@@ -1,3 +1,4 @@
+import { User } from "modules/users/model/User";
 import { v4 } from "uuid";
 
 import { UsersRepository } from "../../../modules/users/repositories/implementations/UsersRepository";
@@ -18,7 +19,9 @@ describe("TurnUserAdminUseCase", () => {
       email: "dogim@rocketseat.com",
     });
 
-    const updatedUser = turnUserAdminUseCase.execute({ user_id: user.id });
+    const updatedUser: User = turnUserAdminUseCase.execute({
+      user_id: user.id,
+    });
 
     expect(updatedUser.admin).toBe(true);
     expect(usersRepository.list()).toStrictEqual(
